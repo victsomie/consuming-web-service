@@ -1,4 +1,4 @@
-package com.example.consumingwebservice;
+package com.example.consumingwebservice.client;
 
 import com.example.consumingwebservice.wsdl.GetCountryRequest;
 import com.example.consumingwebservice.wsdl.GetCountryResponse;
@@ -21,12 +21,13 @@ public class CountryClient extends WebServiceGatewaySupport {
         log.info("Requesting location for "+ country);
 
         // Response
-        GetCountryResponse response = (GetCountryResponse) getWebServiceTemplate().marshalSendAndReceive("http://localhost:8091/ws/countries", request, new SoapActionCallback("http://spring.io/guides/gs-producing-web-service/GetCountryRequest"));
+        GetCountryResponse response = (GetCountryResponse) getWebServiceTemplate()
+                .marshalSendAndReceive("http://localhost:8091/ws/countries",
+                        request, new
+                                SoapActionCallback("http://spring.io/guides/gs-producing-web-service/GetCountryRequest")
+                );
 
         return response;
     }
-
-
-
 
 }
